@@ -69,12 +69,35 @@ def fill_new_arr(first_ai,last_ai,i):
     n = own_vers + 10
     return a + i * (b - a) / n
 
-# def sequential_search_func():
+def sequential_search_func(arr_of_result_func,curent_func):
+    for i in range(1, 27):
+
+        extr_point_arr = extreme_points(arr_of_result_func)
+
+        if i == 1:
+            first_ai = func_x(extr_point_arr[0])
+            last_ai = func_x(extr_point_arr[1])
+        else:
+            first_ai = arr_x_method2[extr_point_arr[0]]
+            last_ai = arr_x_method2[extr_point_arr[1]]
+
+        arr_x_method2 = []
+        arr_x_method2.clear()
+
+        for step in arr_i:
+            arr_x_method2.append(fill_new_arr(first_ai, last_ai, step))
+
+        arr_of_result_func.clear()
+
+        arr_of_result_func = list(map(curent_func, arr_x_method2))
+    return arr_of_result_func
 
 
+sequential_search_func(arr_of_result_f1,f1)
+sequential_search_func(arr_of_result_f2,f2)
+sequential_search_func(arr_of_result_f3,f3)
 
 
-
-print(method2(arr_of_result_f1))
-print(method2(arr_of_result_f2))
-print(method2(arr_of_result_f3))
+#print(extreme_points(arr_of_result_f1))
+#print(extreme_points(arr_of_result_f2))
+#print(extreme_points(arr_of_result_f3))

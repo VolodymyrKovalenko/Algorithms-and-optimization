@@ -12,6 +12,8 @@ while True:
 
 own_vers = int(variant)
 
+
+
 def func_x(i):
     a = -own_vers
     b = own_vers*2
@@ -20,7 +22,10 @@ def func_x(i):
 
 arr_i = [i for i in range(0,own_vers+11)]
 arr_of_x = (list(map(func_x,arr_i)))
-#print(arr_of_x)
+
+sequential_search_arr1 = []
+sequential_search_arr2 = []
+sequential_search_arr3 = []
 
 def f1(x):
     n = own_vers
@@ -50,16 +55,23 @@ for nn in arr_of_x:
 
 
 def method2(arr_func):
-    curent_arr = []
+    arr_my_X = []
+    arr_my_X.clear()
     minFunc = min(arr_func)
     minRight = arr_func.index(minFunc)+1
+
+    # if int(minFunc) == int(arr_func[minRight]):
+    #     minRight +=1
     minLeft = arr_func.index(minFunc)-1
+    # if minFunc == arr_func[minLeft]:
+    #     minLeft -=1
+    arr_my_X.append(minLeft)
+    arr_my_X.append(minRight)
+    sequential_search_arr1.append(minFunc)
 
-    curent_arr.append(arr_func[minLeft])
-    curent_arr.append(minFunc)
-    curent_arr.append(arr_func[minRight])
+    return arr_my_X
 
-    return curent_arr
+
 
 
 

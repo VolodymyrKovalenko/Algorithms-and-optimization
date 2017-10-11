@@ -23,9 +23,6 @@ def func_x(i):
 arr_i = [i for i in range(0,own_vers+11)]
 arr_of_x = (list(map(func_x,arr_i)))
 
-sequential_search_arr1 = []
-sequential_search_arr2 = []
-sequential_search_arr3 = []
 
 def f1(x):
     n = own_vers
@@ -54,24 +51,25 @@ for nn in arr_of_x:
     print('|{:^15.11}|{:^15.11}|{:^15.11}|{:^15.11}|'.format(nn,f1(nn),f2(nn),f3(nn)))
 
 
-def method2(arr_func):
-    arr_my_X = []
-    arr_my_X.clear()
-    minFunc = min(arr_func)
-    minRight = arr_func.index(minFunc)+1
+def extreme_points(arr_func):
+    arr_of_x = []
+    arr_of_x.clear()
+    min_func = min(arr_func)
+    min_right_elem = arr_func.index(min_func)+1
+    min_left_elem = arr_func.index(min_func)-1
 
-    # if int(minFunc) == int(arr_func[minRight]):
-    #     minRight +=1
-    minLeft = arr_func.index(minFunc)-1
-    # if minFunc == arr_func[minLeft]:
-    #     minLeft -=1
-    arr_my_X.append(minLeft)
-    arr_my_X.append(minRight)
-    sequential_search_arr1.append(minFunc)
+    arr_of_x.append(min_left_elem)
+    arr_of_x.append(min_right_elem)
 
-    return arr_my_X
+    return arr_of_x
 
+def fill_new_arr(first_ai,last_ai,i):
+    a = first_ai
+    b = last_ai
+    n = own_vers + 10
+    return a + i * (b - a) / n
 
+# def sequential_search_func():
 
 
 

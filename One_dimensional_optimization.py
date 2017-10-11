@@ -51,15 +51,18 @@ for nn in arr_of_x:
     print('|{:^15.11}|{:^15.11}|{:^15.11}|{:^15.11}|'.format(nn,f1(nn),f2(nn),f3(nn)))
 
 
-def extreme_points(arr_func):
+def extreme_points(arr_func,final_arr):
     arr_of_x = []
     arr_of_x.clear()
+    if arr_func == []:
+        return
     min_func = min(arr_func)
     min_right_elem = arr_func.index(min_func)+1
     min_left_elem = arr_func.index(min_func)-1
 
     arr_of_x.append(min_left_elem)
     arr_of_x.append(min_right_elem)
+    final_arr.append(min_func)
 
     return arr_of_x
 
@@ -70,9 +73,11 @@ def fill_new_arr(first_ai,last_ai,i):
     return a + i * (b - a) / n
 
 def sequential_search_func(arr_of_result_func,curent_func):
+    final_arr_seq_searc = []
+
     for i in range(1, 27):
 
-        extr_point_arr = extreme_points(arr_of_result_func)
+        extr_point_arr = extreme_points(arr_of_result_func,final_arr_seq_searc)
 
         if i == 1:
             first_ai = func_x(extr_point_arr[0])
@@ -90,14 +95,35 @@ def sequential_search_func(arr_of_result_func,curent_func):
         arr_of_result_func.clear()
 
         arr_of_result_func = list(map(curent_func, arr_x_method2))
-    return arr_of_result_func
+    return final_arr_seq_searc
 
 
-sequential_search_func(arr_of_result_f1,f1)
-sequential_search_func(arr_of_result_f2,f2)
-sequential_search_func(arr_of_result_f3,f3)
+print(sequential_search_func(arr_of_result_f1,f1))
+print(sequential_search_func(arr_of_result_f2,f2))
+print(sequential_search_func(arr_of_result_f3,f3))
 
+graf1 = sequential_search_func(arr_of_result_f1,f1)
 
-#print(extreme_points(arr_of_result_f1))
-#print(extreme_points(arr_of_result_f2))
-#print(extreme_points(arr_of_result_f3))
+arr_iter = [i for i in range(1,26)]
+
+while True:
+    shed_numb = input('Enter number of schedule of function: ')
+    if not variant.isdigit() or int(shed_numb) < 1 or int(shed_numb) > 3:
+        print("Enter correct schedule of function")
+        continue
+    if shed_numb or shed_numb == "exit":
+        break
+
+pict_f4 = pylab.figure(4)
+#pylab.yticks(range(-10,125,1))
+pylab.xticks(range(1,26,1))
+pylab.plot(arr_iter, graf1)
+
+if shed_numb == 1:
+    pylab.plot(arr_iter, sequential_search_func(arr_of_result_f1, f1))
+elif shed_numb == 2:
+    pylab.plot(arr_iter, sequential_search_func(arr_of_result_f2, f2))
+elif shed_numb == 3:
+    pylab.plot(arr_iter, sequential_search_func(arr_of_result_f3, f3))
+pict_f4.show()
+input()

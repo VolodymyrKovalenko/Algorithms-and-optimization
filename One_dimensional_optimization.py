@@ -54,8 +54,6 @@ for nn in arr_of_x:
 def extreme_points(arr_func,final_arr):
     arr_of_x = []
     arr_of_x.clear()
-    if arr_func == []:
-        return
     min_func = min(arr_func)
     min_right_elem = arr_func.index(min_func)+1
     min_left_elem = arr_func.index(min_func)-1
@@ -72,12 +70,13 @@ def fill_new_arr(first_ai,last_ai,i):
     n = own_vers + 10
     return a + i * (b - a) / n
 
-def sequential_search_func(arr_of_result_func,curent_func):
+def sequential_search_func(arr_func,curent_func):
     final_arr_seq_searc = []
+    curent_arr_of_result = arr_func
 
-    for i in range(1, 27):
+    for i in range(1, 26):
 
-        extr_point_arr = extreme_points(arr_of_result_func,final_arr_seq_searc)
+        extr_point_arr = extreme_points(curent_arr_of_result,final_arr_seq_searc)
 
         if i == 1:
             first_ai = func_x(extr_point_arr[0])
@@ -87,14 +86,11 @@ def sequential_search_func(arr_of_result_func,curent_func):
             last_ai = arr_x_method2[extr_point_arr[1]]
 
         arr_x_method2 = []
-        arr_x_method2.clear()
 
         for step in arr_i:
             arr_x_method2.append(fill_new_arr(first_ai, last_ai, step))
 
-        arr_of_result_func.clear()
-
-        arr_of_result_func = list(map(curent_func, arr_x_method2))
+        curent_arr_of_result = list(map(curent_func, arr_x_method2))
     return final_arr_seq_searc
 
 
@@ -102,13 +98,12 @@ print(sequential_search_func(arr_of_result_f1,f1))
 print(sequential_search_func(arr_of_result_f2,f2))
 print(sequential_search_func(arr_of_result_f3,f3))
 
-graf1 = sequential_search_func(arr_of_result_f1,f1)
 
 arr_iter = [i for i in range(1,26)]
 
 while True:
-    shed_numb = input('Enter number of schedule of function: ')
-    if not variant.isdigit() or int(shed_numb) < 1 or int(shed_numb) > 3:
+    shed_numb = int(input('Enter number of schedule of function: '))
+    if not variant.isdigit() or shed_numb < 1 or shed_numb > 3:
         print("Enter correct schedule of function")
         continue
     if shed_numb or shed_numb == "exit":
@@ -117,7 +112,6 @@ while True:
 pict_f4 = pylab.figure(4)
 #pylab.yticks(range(-10,125,1))
 pylab.xticks(range(1,26,1))
-pylab.plot(arr_iter, graf1)
 
 if shed_numb == 1:
     pylab.plot(arr_iter, sequential_search_func(arr_of_result_f1, f1))
@@ -125,5 +119,8 @@ elif shed_numb == 2:
     pylab.plot(arr_iter, sequential_search_func(arr_of_result_f2, f2))
 elif shed_numb == 3:
     pylab.plot(arr_iter, sequential_search_func(arr_of_result_f3, f3))
+pict_f4.canvas.set_window_title('Графік методу послідовного уточнения для функції №{}'.format(shed_numb))
+pylab.xlabel('Номер ітерації')
+pylab.ylabel('Значення функції')
 pict_f4.show()
 input()

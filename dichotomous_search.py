@@ -14,29 +14,39 @@ own_vers = int(variant)
 
 
 
-def func_x(i):
-    a = -own_vers
-    b = own_vers*3
-    n = own_vers+10
-    return a + i*(b-a)/n
+# def func_x(i):
+#     a = -own_vers
+#     b = own_vers*3
+#     n = own_vers+10
+#     return a + i*(b-a)/n
+#
+# arr_i = [i for i in range(0,own_vers+11)]
+# arr_of_x = (list(map(func_x,arr_i)))
 
-arr_i = [i for i in range(0,own_vers+11)]
-arr_of_x = (list(map(func_x,arr_i)))
 
-
-def f1_dichotomous(x):
+def f1_dicht(x):
     n = own_vers
     return (x-n)**2 + n*x
 
-def f2_dichotomous(x):
+def f2_dicht(x):
     n = own_vers
     return (x-n)**2 + n*x**2
 
-def f3_dichotomous(x):
+def f3_dicht(x):
     n = own_vers
     return (x-n)**2 + math.sin(n*x)
 
-arr_of_result_f1 = list(map(f1_dichotomous,arr_of_x))
-arr_of_result_f2 = list(map(f2_dichotomous,arr_of_x))
-arr_of_result_f3 = list(map(f3_dichotomous,arr_of_x))
+# arr_of_result_f1 = list(map(f1_dichotomous,arr_of_x))
+# arr_of_result_f2 = list(map(f2_dichotomous,arr_of_x))
+# arr_of_result_f3 = list(map(f3_dichotomous,arr_of_x))
 
+epsilon = 1e-2
+a = 0
+b = own_vers * 3
+while (b-a) > epsilon:
+    c = (a+b)/2
+    if f1_dicht(b) * f1_dicht(c) < 0:
+        a = c
+    else:
+        b = c
+print((a+b)/2)

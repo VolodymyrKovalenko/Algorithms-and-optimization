@@ -83,7 +83,8 @@ def sequential_search_func(arr_func,curent_func):
             last_ai = func_x(extr_point_arr[1])
         else:
             first_ai = arr_x_method2[extr_point_arr[0]]
-            last_ai = arr_x_method2[extr_point_arr[1]]
+            zet = extr_point_arr[1]
+            last_ai = arr_x_method2[zet]
 
         arr_x_method2 = []
 
@@ -97,6 +98,16 @@ def sequential_search_func(arr_func,curent_func):
 print(sequential_search_func(arr_of_result_f1,f1))
 print(sequential_search_func(arr_of_result_f2,f2))
 print(sequential_search_func(arr_of_result_f3,f3))
+
+res1 = sequential_search_func(arr_of_result_f1,f1)
+res2 = sequential_search_func(arr_of_result_f2,f2)
+res3 = sequential_search_func(arr_of_result_f3,f3)
+
+print('----------------------------------------------------------------------------------------------')
+print('|{:^15}|{:^25}|{:^35}'.format('k iter','Xmin(k)','Z(k) = Yopt - Ymin(k)'))
+print('----------------------------------------------------------------------------------------------')
+for nn in range(1,25):
+    print('|{:^15}|{:^25.20}|{:^35.25}|'.format(nn,res3[nn],res3[20]-res3[nn]))
 
 
 arr_iter = [i for i in range(1,26)]

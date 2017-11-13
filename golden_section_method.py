@@ -2,7 +2,7 @@ import pylab
 import numpy
 
 # Variant data
-n = 1.0  # Variant number
+n = 13.0  # Variant number
 eps = 1e-3 # given accuracy
 k_max = 20 # max amount of iterations
 
